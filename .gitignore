@@ -1,0 +1,4 @@
+.env
+logs/application.log
+data/.session.db
+db/yao.db

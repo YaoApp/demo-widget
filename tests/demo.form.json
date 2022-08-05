@@ -1,0 +1,30 @@
+{
+  "columns": [
+    {
+      "title": "First Name",
+      "name": "name",
+      "type": "input",
+      "search": true,
+      "props": {
+        "placeholder": "Please input your first name"
+      }
+    },
+    {
+      "title": "Amount",
+      "name": "amount",
+      "type": "input",
+      "search": true,
+      "props": {
+        "placeholder": "Please input amount"
+      }
+    },
+    {
+      "title": "Description",
+      "name": "desc",
+      "type": "textArea",
+      "props": {
+        "placeholder": "Please input Description"
+      }
+    }
+  ]
+}
