@@ -8,7 +8,26 @@
  * Where to get the source of DSL
  */
 function Source() {
-  return {};
+  var sources = {};
+  tpls = Process("models.template.Get", { select: ["id", "dsl"], limit: 2000 });
+  if (tpls.code && tpls.message) {
+    log.Error("Load dyform sources: %s", tpls.message);
+    return sources;
+  }
+
+  tpls.forEach((tpl) => {
+    tpl = tpl || {};
+    try {
+      instance = `instance_${tpl.id}`;
+      dsl = JSON.parse(tpl.dsl);
+      sources[instance] = dsl;
+    } catch (e) {
+      log.Error("Source %v DSL: %s", tpl.id, e.message);
+      return;
+    }
+  });
+
+  return sources;
 }
 
 /**

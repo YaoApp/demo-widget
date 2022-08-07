@@ -96,25 +96,27 @@ function migrateModel(instance, dsl) {
 
   dsl = dsl || {};
   var schNew = toModel(instance, dsl);
-  var schOld = Process("schemas.default.TableGet", `dyform_${instance}`);
-  if (schOld.code != 200 && schOld.message) {
-    if (!schOld.message.includes("not exists")) {
-      log.Error("widgets.dyform.Save: %s", schOld.message);
-      return false;
-    }
 
-    // Create schema
-    var res = Process(
-      "schemas.default.TableCreate",
-      `dyform_${instance}`,
-      schNew
-    );
-    if (res && res.code != 200 && res.message) {
-      log.Error("widgets.dyform.Save: %s", res.message);
-      return false;
-    }
-    return true;
-  }
+  // Customize the table creation logic
+  // var schOld = Process("schemas.default.TableGet", `dyform_${instance}`);
+  // if (schOld.code != 200 && schOld.message) {
+  //   if (!schOld.message.includes("not exists")) {
+  //     log.Error("widgets.dyform.Save: %s", schOld.message);
+  //     return false;
+  //   }
+
+  //   // Create schema
+  //   var res = Process(
+  //     "schemas.default.TableCreate",
+  //     `dyform_${instance}`,
+  //     schNew
+  //   );
+  //   if (res && res.code != 200 && res.message) {
+  //     log.Error("widgets.dyform.Save: %s", res.message);
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
   // Upgrade schema
   var res = Process("schemas.default.TableSave", `dyform_${instance}`, schNew);

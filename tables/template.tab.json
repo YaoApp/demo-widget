@@ -4,15 +4,14 @@
   "decription": "Form Templates",
   "bind": { "model": "template" },
   "apis": {},
+  "hooks": {
+    "after:save": "scripts.template.AfterSave",
+    "after:delete": "scripts.template.AfterDelete"
+  },
   "columns": {
     "ID": {
       "label": "ID",
       "view": { "type": "label", "props": { "value": ":id" } }
-    },
-    "Serial Number": {
-      "label": "Serial Number",
-      "view": { "type": "label", "props": { "value": ":sn" } },
-      "edit": { "type": "input", "props": { "value": ":sn" } }
     },
     "Form Name": {
       "label": "Form Name",
@@ -25,15 +24,12 @@
       "edit": { "type": "textArea", "props": { "value": ":dsl", "rows": 14 } }
     }
   },
-  "filters": {
-    "Keywords": { "@": "f.Keywords", "in": ["where.name.match"] }
-  },
+  "filters": { "Keywords": { "@": "f.Keywords", "in": ["where.name.match"] } },
   "list": {
     "primary": "id",
     "layout": {
       "columns": [
         { "name": "ID", "width": 80 },
-        { "name": "Serial Number", "width": 100 },
         { "name": "Name", "width": 200 }
       ],
       "filters": [{ "name": "Keywords" }]
@@ -52,7 +48,6 @@
       "fieldset": [
         {
           "columns": [
-            { "name": "Serial Number", "width": 24 },
             { "name": "Form Name", "width": 24 },
             { "name": "Form DSL", "width": 24 }
           ]
@@ -64,6 +59,6 @@
       "save": {},
       "delete": { "type": "button", "props": { "label": "Delete" } }
     },
-    "option": { "dev": true }
+    "option": { "dev": false }
   }
 }
