@@ -12,32 +12,44 @@
     },
     {
       "name": "Add new menu",
-      "process": "models.xiang.menu.Save",
+      "process": "models.xiang.menu.Insert",
       "args": [
-        {
-          "name": "Template",
-          "path": "/table/template",
-          "icon": "icon-grid",
-          "rank": 1,
-          "status": "enabled",
-          "visible_menu": 0,
-          "blocks": 0
-        }
-      ]
-    },
-    {
-      "name": "Add new menu",
-      "process": "models.xiang.menu.Save",
-      "args": [
-        {
-          "name": "Tables",
-          "path": "/table/dyform.demo",
-          "icon": "icon-database",
-          "rank": 1,
-          "status": "enabled",
-          "visible_menu": 1,
-          "blocks": 0
-        }
+        [
+          "id",
+          "name",
+          "path",
+          "icon",
+          "rank",
+          "status",
+          "parent",
+          "visible_menu",
+          "blocks"
+        ],
+        [
+          [
+            1,
+            "Template",
+            "/table/template",
+            "icon-grid",
+            1,
+            "enabled",
+            null,
+            0,
+            0
+          ],
+          [
+            2,
+            "Tables",
+            "/table/dyform.demo",
+            "icon-database",
+            1,
+            "enabled",
+            null,
+            1,
+            0
+          ],
+          [3, "Demo", "/table/dyform.demo", null, 1, "enabled", 2, 1, 0]
+        ]
       ]
     }
   ],
