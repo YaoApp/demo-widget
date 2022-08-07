@@ -41,6 +41,92 @@ function Table(instance, dsl) {
 }
 
 /**
+ * Save
+ * MIGRATE the given instance shcema, and (re)load the instance
+ *
+ * @debug
+ *   yao run widgets.dyform.Save test '::{"name":"TEST", "decription":"A TEST DYFORM", "columns":[{"title":"First Name","name":"name","type":"input","search":true,"props":{"placeholder":"Please input your first name"}},{"title":"Amount","name":"amount","type":"input","search":true,"props":{"placeholder":"Please input amount"}},{"title":"Description","name":"desc","type":"textArea","props":{"placeholder":"Please input Description"}}]}'
+ *
+ * @param {*} instance
+ * @param {*} dsl
+ */
+function Save(instance, dsl) {
+  if (migrateModel(instance, dsl) === false) {
+    return false;
+  }
+
+  // Reload Instance
+  var res = Process("widgets.dyform.reload", instance, dsl);
+  if (res && res.code != 200 && res.message) {
+    log.Error("widgets.dyform.Save: %s", res.message);
+    return false;
+  }
+
+  return true;
+}
+
+/**
+ * Delete
+ * REMOVE the given instance schema
+ *
+ * @debug
+ *   yao run widgets.dyform.Delete test
+ *
+ * @param {*} instance
+ */
+function Delete(instance) {
+  var res = Process("schemas.default.TableDrop", `dyform_${instance}`);
+  if (res && res.code != 200 && res.message) {
+    log.Error("widgets.dyform.Delete: %s", res.message);
+    return false;
+  }
+  return true;
+}
+
+/**
+ * migrateModel
+ * @param {*} instance
+ * @param {*} dsl
+ */
+function migrateModel(instance, dsl) {
+  if (!instance) {
+    log.Error("widgets.dyform.Save: missing instance");
+    return false;
+  }
+
+  dsl = dsl || {};
+  var schNew = toModel(instance, dsl);
+  var schOld = Process("schemas.default.TableGet", `dyform_${instance}`);
+  if (schOld.code != 200 && schOld.message) {
+    if (!schOld.message.includes("not exists")) {
+      log.Error("widgets.dyform.Save: %s", schOld.message);
+      return false;
+    }
+
+    // Create schema
+    var res = Process(
+      "schemas.default.TableCreate",
+      `dyform_${instance}`,
+      schNew
+    );
+    if (res && res.code != 200 && res.message) {
+      log.Error("widgets.dyform.Save: %s", res.message);
+      return false;
+    }
+    return true;
+  }
+
+  // Upgrade schema
+  var res = Process("schemas.default.TableSave", `dyform_${instance}`, schNew);
+  if (res && res.code != 200 && res.message) {
+    log.Error("widgets.dyform.Save: %s", res.message);
+    return false;
+  }
+
+  return true;
+}
+
+/**
  * Generate a model
  * @param {*} instance
  * @param {*} payload
@@ -224,5 +310,5 @@ function castModelColumn(column) {
  * Export processes
  */
 function Export() {
-  return { Model: "Model", Table: "Table" };
+  return { Model: "Model", Table: "Table", Save: "Save", Delete: "Delete" };
 }
