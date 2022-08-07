@@ -36,7 +36,22 @@ function AfterDelete(params, id) {
   // Remove schema
   const instance = `instance_${id}`;
   Process("widgets.dyform.Delete", instance);
+  removeMenu(instance);
   return id;
+}
+
+/**
+ * Remove menu item
+ * @debug
+ *  yao run scripts.template.removeMenu instance_1
+ *
+ * @param {*} instance
+ */
+function removeMenu(instance) {
+  const path = `/table/dyform.${instance}`;
+  Process("models.xiang.menu.DestroyWhere", {
+    wheres: [{ column: "path", value: path }],
+  });
 }
 
 /**
