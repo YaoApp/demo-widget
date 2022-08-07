@@ -31,7 +31,8 @@
       "args": [
         {
           "name": "Tables",
-          "icon": "icon-table",
+          "path": "/table/dyform.demo",
+          "icon": "icon-database",
           "rank": 1,
           "status": "enabled",
           "visible_menu": 1,
