@@ -36,7 +36,7 @@ function Source() {
  * @param {*} dsl
  */
 function Compile(name, dsl) {
-  // return dsl;
+  return dsl;
 }
 
 /**
@@ -46,7 +46,7 @@ function Compile(name, dsl) {
  * @param {DSL} dsl
  */
 function OnLoad(name, dsl) {
-  // console.log(name, dsl);
+  log.Info("[Widget] dyform %s loaded", name);
 }
 
 /**

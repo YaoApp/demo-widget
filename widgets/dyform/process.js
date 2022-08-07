@@ -56,12 +56,12 @@ function Save(instance, dsl) {
   }
 
   // Reload Instance
-  var res = Process("widgets.dyform.reload", instance, dsl);
+  log.Info("[Widget] dyform reload %s", instance);
+  var res = Process("widgets.dyform.Reload", instance, JSON.stringify(dsl));
   if (res && res.code != 200 && res.message) {
     log.Error("widgets.dyform.Save: %s", res.message);
     return false;
   }
-
   return true;
 }
 
