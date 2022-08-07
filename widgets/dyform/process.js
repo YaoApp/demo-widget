@@ -1,7 +1,8 @@
 /**
  * Export the widget processes
  * Export() defined witch function in this file will be registered as YAO PROCESS
- * The process name is <WIDGET NAME>.<INSTANCE NAME>.<FUNCTION NAME>
+ * The process name is widgets.<WIDGET NAME>.<FUNCTION NAME>
+ * The process args are [<INSTANCE NAME>, <COMPILED DSL>]
  *
  * @todo:
  *   The processes can be used in compile.js and export.js DIRECTLY
