@@ -2,3 +2,4 @@
 logs/application.log
 data/.session.db
 db/yao.db
+.DS_Store

@@ -1,4 +1,6 @@
 {
+  "name": "TEST",
+  "decription": "A TEST DYFORM",
   "columns": [
     {
       "title": "First Name",

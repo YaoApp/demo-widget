@@ -1,13 +1,11 @@
 /**
- * Export Models, APIs, Flows, Tables, Tasks, Schedules, etc.
+ * Export Models, APIs, Tables, Tasks, Schedules, etc.
  */
 
 /**
  * Export API
  */
-function APIs() {
-  return { dyform: {} };
-}
+function APIs() {}
 
 /**
  * Export Models
@@ -15,5 +13,24 @@ function APIs() {
  * @param {*} dsl
  */
 function Models(name, dsl) {
-  //   console.log(dsl);
+  var exportModels = {};
+  const models = Process("widgets.dyform.Model", name, dsl);
+  models.forEach((model) => {
+    exportModels[model.name] = model.dsl;
+  });
+  return exportModels;
+}
+
+/**
+ * Export Tables
+ * @param {*} name
+ * @param {*} dsl
+ */
+function Tables(name, dsl) {
+  var exportTables = {};
+  const tables = Process("widgets.dyform.Table", name, dsl);
+  tables.forEach((table) => {
+    exportTables[table.name] = table.dsl;
+  });
+  return exportTables;
 }
