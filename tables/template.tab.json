@@ -21,7 +21,14 @@
     "Form DSL": {
       "label": "Form DSL",
       "view": { "type": "label", "props": { "value": ":dsl" } },
-      "edit": { "type": "textArea", "props": { "value": ":dsl", "rows": 14 } }
+      "edit": {
+        "type": "textArea",
+        "props": { "value": ":dsl", "rows": 14 }
+      }
+    },
+    "Form Editor": {
+      "label": "Form Editor",
+      "edit": { "type": "FormPrinter", "props": { "value": ":dsl" } }
     }
   },
   "filters": { "Keywords": { "@": "f.Keywords", "in": ["where.name.match"] } },
@@ -49,7 +56,8 @@
         {
           "columns": [
             { "name": "Form Name", "width": 24 },
-            { "name": "Form DSL", "width": 24 }
+            { "name": "Form DSL", "width": 24 },
+            { "name": "Form Editor", "width": 24 }
           ]
         }
       ]
