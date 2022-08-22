@@ -5,6 +5,8 @@
   "bind": { "model": "template" },
   "apis": {},
   "hooks": {
+    "after:find": "scripts.template.AfterFind",
+    "before:save": "scripts.template.BeforeSave",
     "after:save": "scripts.template.AfterSave",
     "after:delete": "scripts.template.AfterDelete"
   },
@@ -17,14 +19,6 @@
       "label": "Form Name",
       "view": { "type": "label", "props": { "value": ":name" } },
       "edit": { "type": "input", "props": { "value": ":name" } }
-    },
-    "Form DSL": {
-      "label": "Form DSL",
-      "view": { "type": "label", "props": { "value": ":dsl" } },
-      "edit": {
-        "type": "textArea",
-        "props": { "value": ":dsl", "rows": 14 }
-      }
     },
     "Form Editor": {
       "label": "Form Editor",
@@ -56,7 +50,6 @@
         {
           "columns": [
             { "name": "Form Name", "width": 24 },
-            { "name": "Form DSL", "width": 24 },
             { "name": "Form Editor", "width": 24 }
           ]
         }

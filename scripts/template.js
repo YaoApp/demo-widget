@@ -41,6 +41,56 @@ function AfterDelete(params, id) {
 }
 
 /**
+ * AfterFind Hook: transform the DSL format to the form editor needs
+ * @param {*} id
+ * @param {*} template
+ */
+function AfterFind(template, id) {
+  let dsl = JSON.parse(template["dsl"]);
+  let columns = dsl.columns || [];
+  let types = { input: "Input", select: "Select" };
+
+  template["dsl"] = [];
+  columns.forEach((column) => {
+    // let props = column.props || {};
+    // let search = props.showSearch ? true : false;
+    template["dsl"].push({
+      title: column.title,
+      bind: column.name,
+      id: types[column.type],
+      props: column.props || {},
+      search: true,
+      width: 6,
+      chosen: false,
+      selected: false,
+    });
+  });
+
+  return template;
+}
+
+/**
+ * BeforSave Hook: transform the form editor data to the DSL
+ * @param {*} payload
+ */
+function BeforeSave(payload) {
+  payload = payload || {};
+  columns = payload.dsl || [];
+  payload["dsl"] = { columns: [], name: payload.name || "UNTITLE" };
+  columns.forEach((column) => {
+    let type = column.id || "";
+    payload["dsl"].columns.push({
+      title: column.title || "UNTITLE",
+      name: column.bind,
+      type: type.toLowerCase(),
+      props: column.props || {},
+    });
+  });
+  payload["dsl"] = JSON.stringify(payload["dsl"]);
+  return [payload];
+}
+
+/**
  * Remove menu item
  * @debug
  *  yao run scripts.template.removeMenu instance_1
