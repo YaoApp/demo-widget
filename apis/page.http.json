@@ -1,0 +1,17 @@
+{
+  "name": "选项接口",
+  "version": "1.0.0",
+  "description": "选项接口",
+  "group": "page",
+  "guard": "-",
+  "paths": [
+    {
+      "path": "/form/setting/:name",
+      "method": "GET",
+      "guard": "-",
+      "process": "xiang.table.Setting",
+      "in": ["$param.name", ":query"],
+      "out": { "status": 200, "type": "application/json" }
+    }
+  ]
+}
