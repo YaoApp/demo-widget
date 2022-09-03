@@ -14,12 +14,6 @@ Documentation: [https://yaoapps.com/en-US/doc](https://yaoapps.com/en-US/doc/Int
 
 ### Docker
 
-MySQL(Optional)
-
-```bash
-docker run -d -p 3307:3306 --restart unless-stopped -e MYSQL_PASSWORD=123456 yaoapp/mysql:8.0-amd64
-```
-
 ```bash
 docker run -d -p 5099:5099 --restart unless-stopped \
     -e YAO_INIT=reset \
