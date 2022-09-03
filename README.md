@@ -45,7 +45,7 @@ YAO_LOG="/app/path/widget/logs/application.log"
 YAO_LOG_MODE="TEXT"  #  TEXT | JSON
 YAO_JWT_SECRET="bLp@bi!oqo-2U+hoTRUG"
 YAO_DB_DRIVER=sqlite3 # sqlite3 | mysql
-YAO_DB_PRIMARY="/app/path/asset/db/yao.db"
+YAO_DB_PRIMARY="/app/path/widget/db/yao.db"
 EOF > /app/path/widget/.env
 ```
 
