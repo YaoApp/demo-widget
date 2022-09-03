@@ -1,5 +1,3 @@
-# demo-widget
-
 # YAO Widget DEMO
 
 ![Image](docs/images/intro.png)

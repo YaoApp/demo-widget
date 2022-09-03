@@ -1,10 +1,10 @@
-# YAO WMS
+# YAO Widget DEMO
 
 ![Image](docs/images/intro.png)
 
 [English](README.md)
 
-仓库管理系统
+云表格 DEMO
 
 参考文档: [https://yaoapps.com/doc](https://yaoapps.com/doc/%E6%95%99%E7%A8%8B/%E4%BD%BF%E7%94%A8%20YAO%20Widget%20%E8%87%AA%E5%BB%BA%E4%BA%91%E8%A1%A8%E6%A0%BC)
 
