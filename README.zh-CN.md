@@ -1,42 +1,35 @@
-# demo-widget
-
-# YAO Widget DEMO
+# YAO WMS
 
 ![Image](docs/images/intro.png)
 
-[中文介绍](README.zh-CN.md)
+[English](README.md)
 
-YAO Widget DEMO
+仓库管理系统
 
-Documentation: [https://yaoapps.com/en-US/doc](https://yaoapps.com/en-US/doc/Introduction/Getting%20Started)
+参考文档: [https://yaoapps.com/doc](https://yaoapps.com/doc/%E6%95%99%E7%A8%8B/%E4%BD%BF%E7%94%A8%20YAO%20Widget%20%E8%87%AA%E5%BB%BA%E4%BA%91%E8%A1%A8%E6%A0%BC)
 
-## USAGE
+## 下载安装
 
-### Docker
-
-MySQL(Optional)
-
-```bash
-docker run -d -p 3307:3306 --restart unless-stopped -e MYSQL_PASSWORD=123456 yaoapp/mysql:8.0-amd64
-```
+### 使用 Docker 运行
 
 ```bash
 docker run -d -p 5099:5099 --restart unless-stopped \
-    -e YAO_INIT=reset \
-    -e YAO_PROCESS_RESET=flows.setmenu \
-    yaoapp/demo-widget:1.0.0-amd64
+    -e YAO_INIT=demo \
+    -e YAO_PROCESS_RESET=flows.init.menu \
+    -e YAO_PROCESS_DEMO=flows.demo.data \
+    yaoapp/demo-widget:1.0.3-amd64
 ```
 
-### Yao
+### 在本地运行
 
-#### Download source code
+#### 下载源码
 
 ```bash
 git clone https://github.com/YaoApp/demo-widget /app/path/widget
 
 ```
 
-#### Set the environment variables
+#### 设置环境变量
 
 ```bash
 mkdir /app/path/widget/db
@@ -57,29 +50,30 @@ YAO_DB_PRIMARY="/app/path/asset/db/yao.db"
 EOF > /app/path/widget/.env
 ```
 
-#### Initialization
+#### 项目初始化
 
 ```bash
 cd /app/path/widget
 
-# Create tables & set menu
+# 创建数据表 & 设置菜单
 yao migrate --reset
 yao run flows.setmenu
 
+
 ```
 
-#### Start the service
+#### 启动服务
 
 ```bash
 cd /app/path/widget
 yao start
 ```
 
-## ADMIN
+## 管理后台
 
-Open the browser to visit the URL:
+打开浏览器输入以下网址进入:
 
 http://127.0.0.1:5099/xiang/login/admin
 
-User Name: `xiang@iqka.com`
-Password: `A123456p+`
+用户名: `xiang@iqka.com`
+密码: `A123456p+`
